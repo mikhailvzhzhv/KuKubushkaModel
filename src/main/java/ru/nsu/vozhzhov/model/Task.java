@@ -1,5 +1,10 @@
 package ru.nsu.vozhzhov.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Task {
 
     private String name;
@@ -9,22 +14,6 @@ public class Task {
     public Task(String name) {
         this.name = name;
         status = Status.NOT_DONE;
-    }
-
-    public void changeStatus(Status status) {
-        this.status = status;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Status getStatus() {
-        return status;
     }
 
     @Override

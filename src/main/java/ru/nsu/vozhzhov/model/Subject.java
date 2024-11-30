@@ -1,8 +1,11 @@
 package ru.nsu.vozhzhov.model;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class Subject {
 
     private String name;
@@ -45,11 +48,13 @@ public class Subject {
         return false;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public List<Task> getTasks() {
-        return tasks;
+    public boolean changeTaskStatus(String taskName, Status status) {
+        for (Task task : tasks) {
+            if (task.getName().equals(taskName)) {
+                task.setStatus(status);
+                return true;
+            }
+        }
+        return false;
     }
 }

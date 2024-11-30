@@ -1,6 +1,9 @@
 package ru.nsu.vozhzhov.model;
 
-enum Status {
+import lombok.Getter;
+
+@Getter
+public enum Status {
     NOT_DONE(0),
     IN_WORK(1),
     PASS(2);
@@ -9,10 +12,6 @@ enum Status {
 
     Status(int value) {
         this.value = value;
-    }
-
-    public int getValue() {
-        return value;
     }
 
     public static Status fromValue(int value) {

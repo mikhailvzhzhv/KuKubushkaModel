@@ -1,13 +1,16 @@
 package ru.nsu.vozhzhov.model;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Context {
 
-    private List<Workspace> workspaces;
+    private final List<Workspace> workspaces;
 
+    @Getter
     private Workspace currentWorkspace;
 
     public Context() {
@@ -16,7 +19,7 @@ public class Context {
     }
 
     public void loadWorkspaces(FileManager fm) {
-        fm.loadWorkspaces(workspaces);
+        fm.loadWorkDir(workspaces);
     }
 
     public boolean addWorkspace(String name) {
@@ -40,22 +43,14 @@ public class Context {
         return false;
     }
 
-    public Workspace getCurrentWorkspace() {
-        return currentWorkspace;
-    }
-
     public List<String> getWorkspacesNames() {
         return workspaces.stream().map(Workspace::getName).collect(Collectors.toList());
     }
 
-    public Workspace deleteCurrentWorkspace() {
+    public boolean deleteCurrentWorkspace() {
         if (currentWorkspace == null) {
-            return null;
+            return false;
         }
-        boolean ok = workspaces.remove(currentWorkspace);
-        if (!ok) {
-            return null;
-        }
-        return currentWorkspace;
+        return workspaces.remove(currentWorkspace);
     }
 }
